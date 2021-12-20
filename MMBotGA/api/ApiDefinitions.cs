@@ -28,7 +28,7 @@ namespace MMBotGA.api
             {
                 Credentials = new NetworkCredential(username, password),
                 PreAuthenticate = true,
-                MaxConnectionsPerServer = 20
+                MaxConnectionsPerServer = 40
             };
             if (Log.IsDebugEnabled)
             {
