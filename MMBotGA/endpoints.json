@@ -1,20 +1,8 @@
 [
   {
-    "LeaseCount": 2,
-    "Url": "http://192.168.1.150:10000/admin/api/",
-    "Username": "",
-    "Password": ""
-  },
-  {
-    "LeaseCount": 8,
-    "Url": "http://192.168.164.128:10000/admin/api/",
-    "Username": "",
-    "Password": ""
-  },
-  {
-    "LeaseCount": 2,
-    "Url": "http://192.168.1.100:10000/admin/api/",
-    "Username": "",
-    "Password": ""
+    "LeaseCount": 24,
+    "Url": "http://192.168.50.8:10005/admin/api/",
+    "Username": "mmbot",
+    "Password": "g4c7838b"
   }
 ]
