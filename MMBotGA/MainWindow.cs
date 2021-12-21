@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using GeneticSharp.Domain;
@@ -114,9 +115,7 @@ namespace MMBotGA
             var apiPool = ApiDefinitions.GetLease();
             ThreadPool.SetMinThreads(apiPool.Available, apiPool.Available);
 
-            //TODO: pick your data provider
-            var dataProvider = new FixedDataProvider();
-            //var dataProvider = new JsonConfiguredDataProvider();
+            var dataProvider = File.Exists("allocations.json") ? new JsonConfiguredDataProvider() : new FixedDataProvider();
 
             var backtestBatches = dataProvider.GetBacktestData(_progressDialog);
             var controlBatches = dataProvider.GetControlData(_progressDialog); 
