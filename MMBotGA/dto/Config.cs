@@ -94,6 +94,9 @@ namespace MMBotGA.dto
         [JsonPropertyName("adj_timeout")]
         public int AdjTimeout { get; set; }
 
+        [JsonPropertyName("trade_within_budget")]
+        public bool TradeWithinBudget { get; set; }
+
         [JsonPropertyName("reduce_on_leverage")]
         public bool ReduceOnLeverage { get; set; }
     }

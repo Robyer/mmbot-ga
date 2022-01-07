@@ -54,6 +54,7 @@ namespace MMBotGA.ga
                         },
                         Enabled = true,
                         AdjTimeout = 60,
+                        TradeWithinBudget = true,
 
                         SpreadCalcSmaHours = chromosome.Sma,
                         SpreadCalcStdevHours = chromosome.Stdev,
