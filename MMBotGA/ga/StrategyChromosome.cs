@@ -17,15 +17,15 @@ namespace MMBotGA.ga
             // max is exclusive
             Exponent = _factory.Create(() => RandomizationProvider.Current.GetDouble(1, 20));
             Trend = _factory.Create(() => RandomizationProvider.Current.GetDouble(-110, 110));
-            Rebalance = _factory.Create(() => RandomizationProvider.Current.GetInt(3, 5)); // 0-5
-            FunctionGene = _factory.Create(() => RandomizationProvider.Current.GetInt(0, 5));
+            Rebalance = _factory.Create(() => RandomizationProvider.Current.GetInt(3, 5)); // always/smart
+            FunctionGene = _factory.Create(() => RandomizationProvider.Current.GetInt(0, _functions.Length));
             Stdev = _factory.Create(() => RandomizationProvider.Current.GetDouble(1, 240));
             Sma = _factory.Create(() => RandomizationProvider.Current.GetDouble(1, 240));
-            Mult = _factory.Create(() => RandomizationProvider.Current.GetDouble(0.5, 2)); // 0.95 - 1.05
+            Mult = _factory.Create(() => RandomizationProvider.Current.GetDouble(0.5, 2));
             Raise = _factory.Create(() => RandomizationProvider.Current.GetDouble(1, 1000));
             Fall = _factory.Create(() => RandomizationProvider.Current.GetDouble(0.1, 10));
             Cap = _factory.Create(() => RandomizationProvider.Current.GetDouble(0, 100));
-            ModeGene = _factory.Create(() => RandomizationProvider.Current.GetInt(0, 5));
+            ModeGene = _factory.Create(() => RandomizationProvider.Current.GetInt(0, _modes.Length));
             DynMultGene = _factory.Create(() => RandomizationProvider.Current.GetInt(0, 2));
             FreezeGene = _factory.Create(() => RandomizationProvider.Current.GetInt(0, 2));
 
@@ -43,7 +43,7 @@ namespace MMBotGA.ga
         public GeneWrapper<double> Trend { get; }
         public GeneWrapper<int> Rebalance { get; }
 
-        private readonly string[] _functions = { "halfhalf", "keepvalue", "gauss", "exponencial", "invsqrtsinh" };
+        private readonly string[] _functions = { "keepvalue", "gauss", "exponencial" }; // "halfhalf", "invsqrtsinh"
         private GeneWrapper<int> FunctionGene { get; }
         public string Function => _functions[FunctionGene.Value];
 
@@ -58,7 +58,7 @@ namespace MMBotGA.ga
         public GeneWrapper<double> Fall { get; }
         public GeneWrapper<double> Cap { get; }
 
-        private readonly string[] _modes = { "disabled", "independent", "together", "alternate", "half_alternate" };
+        private readonly string[] _modes = { "independent", "together", "alternate", "half_alternate" }; // "disabled"
         private GeneWrapper<int> ModeGene { get; }
         public string Mode => _modes[ModeGene.Value];
 
