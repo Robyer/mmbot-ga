@@ -53,7 +53,7 @@ namespace MMBotGA.ga
                             Rebalance = chromosome.Rebalance.ToString()
                         },
                         Enabled = true,
-                        AdjTimeout = 5,
+                        AdjTimeout = 60,
 
                         SpreadCalcSmaHours = chromosome.Sma,
                         SpreadCalcStdevHours = chromosome.Stdev,
