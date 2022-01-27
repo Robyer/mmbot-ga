@@ -83,9 +83,8 @@ namespace MMBotGA.data.provider
                             .Select((p, i) => halfPartMinutes + p * i)
                         );
 
-                    var data = new List<BacktestData>();
-
-                    data.AddRange(offsets
+                    return new Batch(x.Allocation.ToBatchName(),
+                        offsets
                             .Select(o => new BacktestData
                             {
                                 Broker = x.Allocation.Exchange.ToLower(),
@@ -98,23 +97,10 @@ namespace MMBotGA.data.provider
                                 Limit = partMinutes,
                                 Offset = o
                             })
-                            .ToArray());
-
-                    data.Add(new BacktestData()
-                    {
-                        Broker = x.Allocation.Exchange.ToLower(),
-                        Pair = x.Allocation.RobotSymbol ??
-                                       x.Allocation.Symbol, // Get broker pair info: /admin/api/brokers/kucoin/pairs
-                        SourceFile = x.File,
-                        Reverse = true,
-                        Balance = x.Allocation.Balance,
-                        Start = null,
-                        Limit = x.Size,
-                        Offset = 0
-                    });
-
-                    return new Batch(x.Allocation.ToBatchName(), data.ToArray());
-                }).ToArray();
+                            .ToArray()
+                    );
+                })
+                .ToArray();
 
             //var partDays = (int)diff.TotalDays / splits;
             //var overlapStart = backtestRange.Start.AddDays(partDays / 2);
