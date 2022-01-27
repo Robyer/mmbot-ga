@@ -79,13 +79,13 @@ namespace MMBotGA.ga.fitness
             var trades = results.Count(x => x.Sz != 0);
             var alerts = 1 - (results.Count - trades) / (double)results.Count;
 
-            if (trades == 0 || alerts / trades > 0.02) return 0; //alerts / trades > 0.02
+            //if (trades == 0 || alerts / trades > 0.10) return 0; //alerts / trades > 0.02
 
             var days = (last.Tm - first.Tm) / 86400000d;
             var tradesPerDay = trades / days;
 
-            const int mean = 16;
-            const int delta = 7; // target trade range is 9 - 23 trades per day
+            const int mean = 9;
+            const int delta = 6; // target trade range is 3 - 15 trades per day
 
             var x = Math.Abs(tradesPerDay - mean); // 0 - inf, 0 is best
             var y = Math.Max(x - delta, 0) + 1; // 1 - inf, 1 is best ... 
@@ -212,11 +212,11 @@ namespace MMBotGA.ga.fitness
                 }
 
                 // at any point, do not realize loss bigger than x% of your realized profit
-                if (realizedLoss - offset > realizedProfit * 0.05) return 0;
+                if (realizedLoss - offset > realizedProfit * 0.10) return 0;
             }
 
             // realized loss more than x% of balance
-            if (realizedLoss > request.RunRequest.Balance * 0.05) return 0;
+            if (realizedLoss > request.RunRequest.Balance * 0.10) return 0;
 
             lossCount *= 4; // need to make 4 profitable trades to balance out 1 loss trade
             var total = profitCount + lossCount;
@@ -318,7 +318,7 @@ namespace MMBotGA.ga.fitness
 
             Debug.Assert(Math.Abs(pppyWeight + ipdrWeight + lpoWeight + rrrWeight + tradeCountWeight + mcWeight + rpnlWeight - 1) < 0.01);
 
-            const double balanceThreshold = 0.1;
+            const double balanceThreshold = 0.5;
             const double maxCostThreshold = 0.8;
 
             //todo simplify all pl metrics ... ensure pl ascending trend
