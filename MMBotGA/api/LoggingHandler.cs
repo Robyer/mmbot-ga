@@ -17,13 +17,10 @@ namespace MMBotGA.api
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            string requestContent = request.Content != null ? await request.Content.ReadAsStringAsync(cancellationToken) : "";
-
-            Log.Debug($"Request: {request}, Size: {requestContent.Length}");
+            Log.Debug($"Request: {request}");
             var response = await base.SendAsync(request, cancellationToken);
 
-            string responseContent = response.Content != null ? await response.Content.ReadAsStringAsync(cancellationToken) : "";
-            Log.Debug($"Response: {response.StatusCode}, Size: {responseContent.Length}");
+            Log.Debug($"Response: {response.StatusCode}");
 
             return response;
         }
