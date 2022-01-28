@@ -128,7 +128,7 @@ namespace MMBotGA
             var mutation = new UniformMutation(true);
             var chromosome = new StrategyChromosome();
             var population = new Population(500, 3000, chromosome);
-            var termination = new FitnessStagnationTermination(40);
+            var termination = new FitnessStagnationTermination(80);
             var executor = new ExactParallelTaskExecutor(apiPool.Available);
 
             using (var csvMerged = new CsvWrapper<AggregatedChromosomeCsvMap, StrategyChromosome>("MASTER"))
