@@ -309,9 +309,9 @@ namespace MMBotGA.ga.fitness
             if (results == null || results.Count == 0) return new FitnessComposition();
 
             const double rpnlWeight = 0.30;
-            const double rrrWeight = 0.25;
+            const double rrrWeight = 0.20;
             const double mcWeight = 0.15;
-            const double pppyWeight = 0.15;
+            const double pppyWeight = 0.20;
             const double lpoWeight = 0.10;
             const double tradeCountWeight = 0.05;
             const double ipdrWeight = 0;
