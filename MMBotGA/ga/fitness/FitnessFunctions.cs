@@ -332,6 +332,8 @@ namespace MMBotGA.ga.fitness
                           + mcWeight * (result.MaxCostFactor = MaxCost(request, results, maxCostThreshold))
                           + rpnlWeight * (result.RpnlFactor = RpnlDayFactor(request, results));
 
+            result.Fitness = Math.Round(result.Fitness, 4);
+
             Log.Debug($"Fitness : {result.Fitness}");
 
             return result;
